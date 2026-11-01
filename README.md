@@ -161,14 +161,8 @@ aws --version
 
 ## Getting Started
 
-### 1. Clone the repository
 
-```bash
-git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
-```
-
-### 2. Configure AWS credentials
+### 1. Configure AWS credentials
 
 ```bash
 aws configure
@@ -178,7 +172,7 @@ Provide your access key ID, secret access key, default region (`us-east-1`), and
 
 > **Never hard-code credentials in Terraform files or commit them to version control.** Use `aws configure`, environment variables, or a shared credentials file.
 
-### 3. Update region-specific values
+### 2. Update region-specific values
 
 The AMI ID in `main.tf` is specific to a region and account. Replace it with a valid Ubuntu AMI ID for your region:
 
@@ -192,7 +186,7 @@ The S3 bucket name must be **globally unique**, so change it to something of you
 bucket = "<your-unique-bucket-name>"
 ```
 
-### 4. Initialize Terraform
+### 3. Initialize Terraform
 
 ```bash
 terraform init
@@ -200,14 +194,14 @@ terraform init
 
 Downloads the AWS provider plugin and prepares the working directory.
 
-### 5. Validate and format
+### 4. Validate and format
 
 ```bash
 terraform fmt
 terraform validate
 ```
 
-### 6. Preview the changes
+### 5. Preview the changes
 
 ```bash
 terraform plan
@@ -215,7 +209,7 @@ terraform plan
 
 Review the execution plan. It should show every resource listed above as a `+` (create).
 
-### 7. Apply the configuration
+### 6. Apply the configuration
 
 ```bash
 terraform apply
@@ -265,7 +259,7 @@ Each EC2 instance runs a bootstrap script on first boot that:
 4. Writes a custom `index.html` that displays the instance ID and a unique message
 5. Restarts Apache
 
-Scripts are kept in separate files and passed in with `base64encode(file("userdata.sh"))`.
+Scripts are kept in separate files and passed in with `(file("userdata.sh"))`.
 
 ---
 
@@ -354,7 +348,7 @@ override.tf.json
 
 | Resource | Cost note |
 |---|---|
-| EC2 `t2.micro` (x2) | Free tier eligible (750 hours/month for the first 12 months) |
+| EC2 `t3.micro` (x2) | Free tier eligible |
 | Application Load Balancer | Billed per hour plus usage, **not** free tier for all accounts |
 | S3 bucket | Negligible when empty or lightly used |
 | VPC, subnets, IGW, route tables | No charge |
