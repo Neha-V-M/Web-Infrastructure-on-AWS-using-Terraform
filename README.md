@@ -22,6 +22,7 @@ Infrastructure as Code (IaC) project that provisions a load-balanced, multi-AZ w
 - [Configuration](#configuration)
 - [Outputs](#outputs)
 - [Verifying the Deployment](#verifying-the-deployment)
+- [Screenshots](#screenshots)
 - [Cleanup](#cleanup)
 - [Security Considerations](#security-considerations)
 - [Cost Considerations](#cost-considerations)
@@ -294,6 +295,48 @@ You can also test from the command line:
 ```bash
 curl http://$(terraform output -raw loadbalancerdns)
 ```
+
+---
+
+## Screenshots
+
+### 1. Security Group Rules
+Inbound and outbound rules attached to the instances and load balancer.
+
+![Security Group](screenshots/01-security-group.png)
+
+### 2. Terraform Apply
+Successful deployment with the load balancer DNS output.
+
+![Terraform Apply](screenshots/02-terraform-apply.png)
+
+### 3. VPC Resource Map
+VPC with two public subnets, route table, and Internet Gateway.
+
+![VPC Resource Map](screenshots/03-vpc-resource-map.png)
+
+### 4. EC2 Instances
+Two instances running in separate Availability Zones.
+
+![EC2 Instances](screenshots/04-ec2-instances.png)
+
+
+### 5. Target Group Health
+Both targets registered and reporting healthy.
+
+![Target Group Health](screenshots/05-target-group-healthy.png)
+
+### 6. Application Load Balancer
+Load balancer in the Active state with the HTTP listener on port 80.
+
+![Application Load Balancer](screenshots/06-load-balancer-active.png)
+
+### 7. Load Balanced Website
+Refreshing the load balancer URL alternates between the two web servers.
+
+| Instance 1 | Instance 2 |
+|---|---|
+| ![Instance 1](screenshots/07-website-instance-1.png) | ![Instance 2](screenshots/08-website-instance-2.png) |
 
 ---
 
